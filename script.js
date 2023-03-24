@@ -13,6 +13,12 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
 
+  $('.saveBtn').on ('click', function () {
+    let textGrab = $(this).siblings('textarea');
+    console.log(textGrab.val());
+    localStorage.setItem("savedText", textGrab.val());
+  });
+
   // assigns new class depending on what time it is based on number value from element id
   for (i=0;i<timeBlocks.length;i++) {
     let idGrab = timeBlocks[i].id.toString();
