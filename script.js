@@ -42,36 +42,8 @@ $( document ).ready(function() {
   // loops through localSotrage to grab keys and attach them to variable
   for (i=0;i<localStorage.length;i++) {
     var savedData = JSON.parse(localStorage.getItem(localStorage.key(i)));
-
-    // switch case checks key name against textarea ids and changes text depending on savedData from localStorage
-    switch (localStorage.key(i)) {
-      case 'hour-9':
-        $('#hour-9').children('textarea').text(savedData);
-        break;
-      case 'hour-10':
-        $('#hour-10').children('textarea').text(savedData);
-        break;
-      case 'hour-11':
-        $('#hour-11').children('textarea').text(savedData);
-        break;
-      case 'hour-12':
-        $('#hour-12').children('textarea').text(savedData);
-        break;
-      case 'hour-13':
-        $('#hour-13').children('textarea').text(savedData);
-        break;
-      case 'hour-14':
-        $('#hour-14').children('textarea').text(savedData);
-        break;
-      case 'hour-15':
-        $('#hour-15').children('textarea').text(savedData);
-        break;
-      case 'hour-16':
-        $('#hour-16').children('textarea').text(savedData);
-        break;
-      case 'hour-17':
-        $('#hour-17').children('textarea').text(savedData);
-  };
+    //checks key name against textarea ids and changes text depending on savedData from localStorage
+    $(`#${localStorage.key(i)}`).children('textarea').text(savedData);
 };
 
   // Displays current date (ex Sunday March 26, 2023)
