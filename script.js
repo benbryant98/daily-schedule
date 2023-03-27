@@ -13,11 +13,8 @@ $( document ).ready(function() {
     $('.saveBtn').on ('click', function () {
       let textID = $(this).parent().attr('id');
       let textGrab = $(this).siblings('textarea');
-      let data = [textGrab.val(), textID];
-      let prevData = JSON.parse(localStorage.getItem("savedData")) || [];
-      prevData.push(data);
-      console.log(prevData);
-      localStorage.setItem("savedData", JSON.stringify(prevData));
+      let data = textGrab.val();
+      localStorage.setItem(textID, JSON.stringify(data));
     });
 
     // assigns new class depending on what time it is based on number value from element id
@@ -25,7 +22,6 @@ $( document ).ready(function() {
       let idGrab = timeBlocks[i].id.toString();
       let numGrab = idGrab.match(/(\d+)/);
       var timeCompare = parseInt(numGrab[0]);
-
       let currentTime = parseInt(dayjs().format('H'))    
 
       if (timeCompare === currentTime) {
@@ -42,17 +38,43 @@ $( document ).ready(function() {
         $(timeBlocks[i]).addClass('past');
     }
   };
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  var savedData = JSON.parse(localStorage.getItem("savedData"));
-  console.log(savedData[0]);
-  switch (savedData[0][1]) {
 
+  // loops through localSotrage to grab keys and attach them to variable
+  for (i=0;i<localStorage.length;i++) {
+    var savedData = JSON.parse(localStorage.getItem(localStorage.key(i)));
+
+    // switch case checks key name against textarea ids and changes text depending on savedData from localStorage
+    switch (localStorage.key(i)) {
+      case 'hour-9':
+        $('#hour-9').children('textarea').text(savedData);
+        break;
+      case 'hour-10':
+        $('#hour-10').children('textarea').text(savedData);
+        break;
+      case 'hour-11':
+        $('#hour-11').children('textarea').text(savedData);
+        break;
+      case 'hour-12':
+        $('#hour-12').children('textarea').text(savedData);
+        break;
+      case 'hour-13':
+        $('#hour-13').children('textarea').text(savedData);
+        break;
+      case 'hour-14':
+        $('#hour-14').children('textarea').text(savedData);
+        break;
+      case 'hour-15':
+        $('#hour-15').children('textarea').text(savedData);
+        break;
+      case 'hour-16':
+        $('#hour-16').children('textarea').text(savedData);
+        break;
+      case 'hour-17':
+        $('#hour-17').children('textarea').text(savedData);
   };
+};
 
-  // TODO: Add code to display the current date in the header of the page.
+  // Displays current date (ex Sunday March 26, 2023)
   currentDay.text(dayjs().format('dddd MMMM DD, YYYY'));
   header.append(currentDay);
   });
